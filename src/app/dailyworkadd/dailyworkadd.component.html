@@ -1,0 +1,62 @@
+<form (ngSubmit)="onAdd(f)" #f="ngForm" class="example-form">
+
+  <div class="container">
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+
+        <input matInput type="text" id="title" required placeholder="title" [(ngModel)]="title" name="title" #title1="ngModel">
+      </mat-form-field>
+
+
+    </div>
+
+
+
+
+
+    <mat-form-field>
+      <mat-select placeholder="standard" [(ngModel)]="selected1" name="selected1" (selectionChange)="onStandardChange()">
+        <mat-option *ngFor="let item of arr1" [value]="item.standard_id">
+          {{item.standard_no}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+<br>
+    <mat-form-field>
+      <mat-select placeholder="subject" [(ngModel)]="selected2" name="selected2">
+        <mat-option *ngFor="let item of arr2" [value]="item">
+          {{item.subject_name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+<br>
+<div class="form-group">
+      <h4>IMAGE:</h4>
+      <input  type="file" (change)="onChange($event)">
+    </div>
+
+
+  <!-- <mat-checkbox  *ngFor="let item of arr" (change)="onCheckChange(item)"  >{{item.batch_name}}</mat-checkbox> -->
+
+  <br>
+  <br>
+   <mat-checkbox  *ngFor="let item of arr" (change)="onCheckChange(item)" >{{item.batch_name}}</mat-checkbox>
+
+    <!-- <mat-form-field>
+    <mat-select placeholder="standard" name="selected1" [(ngModel)]="fk_standard_id">
+      <mat-option *ngFor="let item of arr1" name="sel" [value]="item.standard_id">
+        {{item.standard_no}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>  -->
+
+
+
+
+<br>
+
+
+    <button type="submit" [disabled]="!f.valid" class="btn btn-primary">SUBMIT</button>
+
+  </div>

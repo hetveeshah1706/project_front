@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+      <!-- <b style="font-size: 50px;margin-left: 520px;font-family: Algerian;">
+        BATCH MANAGEMENT </b> --><h1>ADD BATCH MANAGEMENT</h1>
+      </div>
+    </div>
+<form (ngSubmit)="onAdd(f)" #f="ngForm" class="example-form">
+
+    <div class="container">
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+
+          <input matInput type="text" id="batch_name" required placeholder="batch_name" [(ngModel)]="batch_name" name="batch_name" #batchname="ngModel">
+        </mat-form-field>
+
+
+      </div>
+      <mat-form-field>
+        <mat-select placeholder="standard" [(ngModel)]="selected" name="selected">
+          <mat-option *ngFor="let item of arr1" [value]="item">
+            {{item.standard_no}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <button type="submit" [disabled]="!f.valid" class="btn btn-primary">SUBMIT</button>
+
+    </div>
+  </form>
