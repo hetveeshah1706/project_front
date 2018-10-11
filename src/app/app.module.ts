@@ -18,6 +18,7 @@ import { MenuComponent } from './menu/menu.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { HomeComponent } from './home/home.component';
 import { DailyworkComponent } from './dailywork/dailywork.component';
+import { UpdatedailyComponent } from './dailywork/updatedaily/updatedaily.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DailyworkComponent } from './dailywork/dailywork.component';
     DailyworkaddComponent,
     MenuComponent,
     HomeComponent,
-    DailyworkComponent
+    DailyworkComponent,
+    UpdatedailyComponent
   ],
   imports: [
     BrowserModule,
