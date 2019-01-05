@@ -1,10 +1,16 @@
+<h1>ADD DAILYWORK
+  </h1>
+
 <form (ngSubmit)="onAdd(f)" #f="ngForm" class="example-form">
+
 
   <div class="container">
     <div class="form-group">
       <mat-form-field class="example-full-width">
 
         <input matInput type="text" id="title" required placeholder="title" [(ngModel)]="title" name="title" #title1="ngModel">
+        <mat-error *ngIf="title1.hasError('required')">its required</mat-error>
+
       </mat-form-field>
 
 
@@ -15,19 +21,21 @@
 
 
     <mat-form-field>
-      <mat-select placeholder="standard" [(ngModel)]="selected1" name="selected1" (selectionChange)="onStandardChange()">
+      <mat-select placeholder="standard" [(ngModel)]="selected1" name="selected1" #dropdown="ngModel" (selectionChange)="onStandardChange()">
         <mat-option *ngFor="let item of arr1" [value]="item.standard_id">
           {{item.standard_no}}
         </mat-option>
       </mat-select>
+      <mat-error *ngIf="dropdown.hasError('required')">its required</mat-error>
     </mat-form-field>
 <br>
     <mat-form-field>
-      <mat-select placeholder="subject" [(ngModel)]="selected2" name="selected2">
+      <mat-select placeholder="subject" [(ngModel)]="selected2" name="selected2" #dropdown="ngModel">
         <mat-option *ngFor="let item of arr2" [value]="item">
           {{item.subject_name}}
         </mat-option>
       </mat-select>
+      <mat-error *ngIf="dropdown.hasError('required')">its required</mat-error>
     </mat-form-field>
 
 <br>
@@ -57,6 +65,16 @@
 <br>
 
 
-    <button type="submit" [disabled]="!f.valid" class="btn btn-primary">SUBMIT</button>
+
 
   </div>
+  <div class="row">
+      <div class="col-sm-6">
+        <button class="btn btn-group  btn-primary form-control" [disabled]="!f.valid" type="submit">SAVE</button>
+      </div>
+      <div class="col-sm-6">
+        <button class="btn btn-default btn-danger form-control" (click)="onBack()">CANCEL</button>
+      </div>
+
+
+    </div>

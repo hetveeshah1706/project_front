@@ -87,6 +87,9 @@ export class BatchComponent implements OnInit {
     onAdd(){
       this._route.navigate(['/addbatch']);
     }
+    onBack(){
+      this._route.navigate(['/batch'])
+    }
 
   ngOnInit() {
     this.dataSource.paginator=this.paginator;

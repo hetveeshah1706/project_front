@@ -11,15 +11,20 @@ export class BatchServiceService {
   batch:string='http://localhost:3000/batch/';
   batch_standard:string='http://localhost:3000/batch_standard/';
   standard:string='http://localhost:3000/standard/';
+  subject:string= "http://localhost:3000/subject/";
   getAllBatch(){
     return this._http.get(this.batch);
   }
   getAllStandard(){
     return this._http.get(this.standard);
   }
+  getAllSubject(){
+    return this._http.get(this.subject);
+  }
   getBatchById(batch_id:number){
     return this._http.get(this.batch+batch_id);
   }
+
   getBatchByStandard(){
     return this._http.get(this.batch_standard);
   }

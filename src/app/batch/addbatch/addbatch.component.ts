@@ -20,10 +20,30 @@ export class AddbatchComponent implements OnInit {
   standard_id:number;
   standard_no:number;
   arr2:add_batch[]=[];
+  i:number;
+  batcharr:batch_class[]=[];
+  flag:boolean=false;
 
   constructor(private _ser:BatchServiceService,private _route:Router) { }
   onAdd()
   {
+    for(this.i=0;this.i<this.batcharr.length;this.i++){
+
+      if(this.batcharr[this.i].batch_name==this.batch_name){
+
+        this.flag=true;
+        break;
+
+      }
+    }
+    if(this.flag==true){
+      alert('batch name already present');
+      this.flag=false;
+      this._route.navigate(['/batch'])
+
+    }
+    else
+    {
   // const fd=new FormData();
 
   //   fd.append('batch_name',this.batch_name);
@@ -37,7 +57,7 @@ export class AddbatchComponent implements OnInit {
       (data:any)=>{
         console.log(data);
         this.arr2.push(new add_batch(this.batch_name,this.selected.standard_id));
-        this._route.navigate(['/']);
+        this._route.navigate(['/batch']);
 
       }
 
@@ -47,13 +67,25 @@ export class AddbatchComponent implements OnInit {
 
 
      }
+    }
+    onBack(){
+      this._route.navigate(['/batch']);
+    }
 
   ngOnInit() {
     this._ser.getAllStandard().subscribe(
       (data:any)=>{
         this.arr1=data;
+        console.log(this.arr1);
       }
     );
+    this._ser.getAllBatch().subscribe(
+      (data:any)=>{
+        this.batcharr=data;
+        console.log(this.batcharr)
+      }
+    )
+
   }
 
 }

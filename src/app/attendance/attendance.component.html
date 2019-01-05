@@ -1,0 +1,10 @@
+   <mat-form-field>
+    <mat-select placeholder="standard" [(ngModel)]="selected_batch" name="selected_batch" #dropdown="ngModel" (selectionChange)="onBatchChange()">
+      <mat-option *ngFor="let item of mergearr" [value]="item.batch_id">
+        {{item.batch_name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="dropdown.hasError('required')">its required</mat-error>
+  </mat-form-field>
+<br>
+<!-- <mat-checkbox  *ngFor="let item of mergearr" [(ngModel)]="selected_batch" [value]="item.batch_id" (change)="onBatchChange()"  >{{item.batch_name}}</mat-checkbox> -->

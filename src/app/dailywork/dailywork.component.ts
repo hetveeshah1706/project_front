@@ -1,23 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource,MatPaginator,MatSort} from '@angular/material';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 import { batchstandardsubjectdaily_class } from "../allclasses/batchstandardsubjectdaily_class"
 import { DailyworkService } from '../allservices/dailywork.service';
 import { Router } from '@angular/router';
+import { SelectionModel, DataSource } from '@angular/cdk/collections';
 import { dailywork_class } from '../allclasses/dailywork_class';
 
 @Component({
   selector: 'app-dailywork',
   templateUrl: './dailywork.component.html',
-  styleUrls: ['./dailywork.component.css']
+  styleUrls: ['./dailywork.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class DailyworkComponent implements OnInit {
+  today: number = Date.now();
+  selection = new SelectionModel(true, []);
 
   constructor(private _ser:DailyworkService,private _route:Router) { }
   merge_arr:batchstandardsubjectdaily_class[]=[];
   del_arr:batchstandardsubjectdaily_class[]=[];
+
   i:number;
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['select','title','image', 'standard_no','subject_name','batch_name','action'];
+  expandedElement;
+  displayedColumns: string[] = ['select','title','image', 'standard_no','subject_name','batch_name','daily_date','action'];
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -67,6 +80,7 @@ export class DailyworkComponent implements OnInit {
       }
     );
   }
+
 
   ngOnInit() {
     this._ser.getBatchStandardSubjectonDailyWork().subscribe(

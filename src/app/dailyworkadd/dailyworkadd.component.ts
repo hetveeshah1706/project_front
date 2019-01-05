@@ -7,7 +7,7 @@ import { standard_class } from "../allclasses/standard_class";
 import { subject_class } from "../allclasses/subject_class";
 import { batchstandard_class } from '../allclasses/batchstandard_class';
 import { BatchServiceService } from '../allservices/batch-service.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dailyworkadd',
@@ -29,7 +29,7 @@ export class DailyworkaddComponent implements OnInit {
   arrbatch:batch_class[]=[];
   arr1:standard_class[]=[];
   arr2:subject_class[]=[];
-  arr3:batchstandard_class[]=[];
+
   fk_standard_id:number;
   i:number;
   onChange(value)
@@ -60,6 +60,9 @@ export class DailyworkaddComponent implements OnInit {
     console.log(this.arr_b);
 
   }
+  onBack(){
+    this._route.navigate(['/alldaily'])
+  }
   onAdd(){
     console.log('hi')
     const fd=new FormData();
@@ -89,7 +92,7 @@ export class DailyworkaddComponent implements OnInit {
 
 
 
-  constructor(private _ser:DailyworkService,private _ser1:BatchServiceService,public _actroute:ActivatedRoute) { }
+  constructor(private _ser:DailyworkService,private _ser1:BatchServiceService,public _actroute:ActivatedRoute,public _route:Router) { }
 
   ngOnInit() {
     // this._ser.getAllBatch().subscribe(

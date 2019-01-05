@@ -13,7 +13,8 @@ export class DailyworkService {
   subject:string= "http://localhost:3000/subject/"
   alldaily:string="http://localhost:3000/alldaily/";
   updatedailywork:string="http://localhost:3000/dailyworkadd/"
-  dailyAllDel:string="http://localhost:3000/dailyworkdel/"
+  dailyAllDel:string="http://localhost:3000/dailyworkdel/";
+  updateimage:string="http://localhost:3000/updatedailyImage/";
 
   constructor(private _http:HttpClient) { }
   dailywork(item:FormData){
@@ -39,6 +40,9 @@ export class DailyworkService {
     let head1=new HttpHeaders().set('Content-Type','application/json');
     return this._http.put(this.updatedailywork+item.work_id,body,{headers:head1});
   }
+  updatedailyImage(item:FormData){
+    return this._http.put(this.updateimage,item)
+  }
   getDailyById(work_id:number){
     return this._http.get(this.alldaily+work_id);
   }
@@ -52,5 +56,6 @@ export class DailyworkService {
     let _abc=new HttpHeaders().set('Content-Type','application/json')
     return this._http.post(this.dailyAllDel,body,{headers:_abc});
   }
+
 
 }

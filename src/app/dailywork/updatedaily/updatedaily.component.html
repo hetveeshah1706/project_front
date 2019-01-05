@@ -1,4 +1,4 @@
-<h1 style="font-family:Algerian;font-size:50px;margin-left:520px;">UPDATE dailywork
+<h1>UPDATE DAILYWORK
 </h1>
 
 <form (ngSubmit)="onUpdate(f)" #f="ngForm" class="example-form">
@@ -10,8 +10,16 @@
         <input matInput type="text" name="title" id="title" required placeholder="title" [(ngModel)]="title" #title1="ngModel">
       </mat-form-field>
  </div>
+ <div class="container" *ngFor="let item of arr_image" >
+   <img  src="http://localhost:3000/images/dailywork/{{item.image}}" style="height: 150px;width: 150px">
+ </div>
+
+ <div class="form-group">
+  <h4>IMAGE:</h4>
+  <input  type="file" (change)="onChange($event)">
+</div>
  <mat-form-field>
-    <mat-select placeholder="standard" name="selectedstandard" [(ngModel)]="fk_standard_id">
+    <mat-select placeholder="standard" name="fk_standard_id" [(ngModel)]="fk_standard_id">
       <mat-option *ngFor="let item of arrstandard" name="sel" [value]="item.standard_id">
         {{item.standard_no}}
       </mat-option>
@@ -20,7 +28,7 @@
   <br>
 
 <mat-form-field>
-  <mat-select placeholder="subject" name="selectedsubject" [(ngModel)]="fk_subject_id">
+  <mat-select placeholder="subject" name="fk_subject_id" [(ngModel)]="fk_subject_id">
       <mat-option *ngFor="let item of arrsubject" name="sel" [value]="item.subject_id">
         {{item.subject_name}}
       </mat-option>
@@ -28,7 +36,7 @@
   </mat-form-field>
 <br>
   <mat-form-field>
-      <mat-select placeholder="batch" name="selectedbatch" [(ngModel)]="fk_batch_id">
+      <mat-select placeholder="batch" name="fk_batch_id" [(ngModel)]="fk_batch_id">
           <mat-option *ngFor="let item of arrbatch" name="sel" [value]="item.batch_id">
             {{item.batch_name}}
           </mat-option>
@@ -37,12 +45,7 @@
 <br>
 
 
-   <!-- <mat-radio-group  >
-      <mat-radio-button *ngFor="let item of arr1" [value]="item.standard_id" [checked]="item.standard_id==fk_standard_id?true:false" >{{item.standard_no}}</mat-radio-button>
-    </mat-radio-group> -->
 
-<br>
-<br>
 
 <div class="row">
   <div class="col-md-6">
@@ -54,6 +57,7 @@
 
 
 </div>
+
 
 <!-- <button  mat-raised-button color="primary" type="submit" style="font-size: 40px;" class="btn btn-default btn-primary"  >SAVE</button>&nbsp;&nbsp;&nbsp;&nbsp;
 <button  mat-button type="button" (click)="onBack()" class="btn btn-default btn-primary">CANCEL</button> -->
