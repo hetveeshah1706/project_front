@@ -14,13 +14,14 @@ export class batch_atten_stu_standard{
    public fk_standard_id :number,
    public attendance_id:number,
     public attendance_status: string,
-    public date: Date,
+    public attendance_date: Date,
     public fk_student_id:number,
     public fk_faculty_id:number,
     public batch_id:number,
     public batch_name: string,
     public standard_id:number,
-    public standard_no:number
+    public standard_no:number,
+    public student_id:number
 
 
 

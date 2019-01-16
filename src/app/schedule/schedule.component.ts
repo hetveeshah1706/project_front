@@ -15,6 +15,7 @@ export class ScheduleComponent implements OnInit {
   merge_arr:batch_std_sub_fac_schedule[]=[]
   del_arr:batch_std_sub_fac_schedule[]=[];
   i:number;
+  delarr:batch_std_sub_fac_schedule[]=[];
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['select','timings','subject_name','standard_no','batch_name','faculty_name','schedule_date','action'];
   applyFilter(filterValue: string) {
@@ -22,6 +23,47 @@ export class ScheduleComponent implements OnInit {
   }
   onAdd(){
     this._route.navigate(['/addschedule']);
+  }
+  onUpdate(item){
+    this._route.navigate(['/updateschedule',item.schedule_id])
+
+  }
+  onCheckChange(item:batch_std_sub_fac_schedule){
+    if(this.delarr.find(x=>x==item)){
+      this.delarr.splice(this.delarr.indexOf(item),1);
+    }
+    else{
+      this.delarr.push(item)
+    }
+    console.log(this.delarr);
+  }
+  onDelete()
+  {
+  this._ser.deleteAllSchedule(this.delarr).subscribe(
+    (data:any)=>{
+      console.log(data);
+      for(this.i=0;this.i<this.delarr.length;this.i++){
+        if(this.merge_arr.find(x=>x==this.merge_arr[this.i])){
+          this.merge_arr.splice(this.merge_arr.indexOf(this.merge_arr[this.i]),1)
+        }
+      }
+      this.dataSource.data=this.merge_arr;
+    }
+  );
+
+}
+
+
+  onDel(item)
+  {
+    this._ser.deleteSchedule(item).subscribe(
+      (data:any)=>{
+        this.merge_arr.splice(this.merge_arr.indexOf(item),1);
+        console.log(this.merge_arr);
+        this.dataSource.data=this.merge_arr;
+      }
+    );
+
   }
 
 

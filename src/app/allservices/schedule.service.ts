@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { schedule } from '../allclasses/schedule';
+import { batch_std_sub_fac_schedule } from '../allclasses/batch_std_sub_fac_schedule';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScheduleService {
   schedule:string="http://localhost:3000/schedule"
-  schedule1:string="http://localhost:3000/schedule1"
+  schedule1:string="http://localhost:3000/schedule1/"
 
   constructor(private _http:HttpClient) { }
   getAllScheduleBatchFacultystdsubject(){
@@ -15,6 +17,26 @@ export class ScheduleService {
   getAllDate(){
     return this._http.get(this.schedule1);
   }
+  getScheduleById(schedule_id:number){
+    return this._http.get(this.schedule1+schedule_id);
+  }
+  updateSchedule(item:schedule){
+    let body=JSON.stringify(item);
+    let head1=new HttpHeaders().set('Content-Type','application/json')
+    return this._http.put(this.schedule1+item.schedule_id,body,{headers:head1});
+  }
+  deleteSchedule(item:schedule){
+
+    let head1=new HttpHeaders().set('Content-Type','application/json')
+    return this._http.delete(this.schedule1+item.schedule_id,{headers:head1});
+  }
+
+  deleteAllSchedule(item:batch_std_sub_fac_schedule[]){
+    let body=JSON.stringify(item)
+    let _abc=new HttpHeaders().set('Content-Type','application/json')
+    return this._http.post(this.schedule1,body,{headers:_abc});
+  }
+
 
 
     addSchedule(item){

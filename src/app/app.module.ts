@@ -30,6 +30,13 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import { AddscheduleComponent } from './schedule/addschedule/addschedule.component';
 import { ResultComponent } from './result/result.component';
 import { AttendanceComponent } from './attendance/attendance.component';
+import { AddattendanceComponent } from './attendance/addattendance/addattendance.component';
+import { UpdatescheduleComponent } from './schedule/updateschedule/updateschedule.component';
+import { FeesComponent } from './fees/fees.component';
+import { FeespaidComponent } from './fees/feespaid/feespaid.component';
+import { StudentComponent } from './student/student.component';
+import { AddstudentComponent } from './student/addstudent/addstudent.component';
+import { UpdatestudentComponent } from './student/updatestudent/updatestudent.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +59,13 @@ import { AttendanceComponent } from './attendance/attendance.component';
     AddscheduleComponent,
     ResultComponent,
     AttendanceComponent,
+    AddattendanceComponent,
+    UpdatescheduleComponent,
+    FeesComponent,
+    FeespaidComponent,
+    StudentComponent,
+    AddstudentComponent,
+    UpdatestudentComponent,
 
   ],
   imports: [

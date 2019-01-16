@@ -42,8 +42,9 @@ sc_date:string;
 
 sche:schedule[]=[];
 
-flag:boolean;
+flag:boolean=false;
 flag1:number=0;
+flag2:number=0;
 faculty_name:string
   constructor(private _ser1:ScheduleService,private _ser2:FacultyService,private _ser3:BatchServiceService,private _ser4:DailyworkService) { }
   onStandardChange(){
@@ -58,76 +59,70 @@ faculty_name:string
   }
   onAdd()
   {
-  this._ser1.getAllScheduleBatchFacultystdsubject().subscribe(
-    (data:schedule[])=>
-    {
-      this.sche=data;
-      for(this.i=0;this.i<this.sche.length;this.i++)
+    this._ser1.getAllScheduleBatchFacultystdsubject().subscribe(
+      (data:schedule[])=>
       {
-       // this.flag=false;
-        if(this.sche[this.i].fk_faculty_id==this.selectedfaculty.faculty_id)
+        this.sche=data;
+        for(this.i=0;this.i<this.sche.length;this.i++)
         {
-          if(this.sche[this.i].timings==this.timings)
+          this.flag=false;
+          this.flag1=0;
+          this.flag2=0;
+          this.date1=new Date(this.sche[this.i].schedule_date);
+          this.date2=new Date(this.schedule_date);
+          if(this.sche[this.i].fk_faculty_id==this.selectedfaculty.faculty_id)
           {
-            this.date1=new Date(this.sche[this.i].schedule_date);
-            this.date2=new Date(this.schedule_date);
-           if(this.date1.toDateString()==this.date2.toDateString())
-           {
-             console.log(this.selected_batch);
-             console.log(this.selectedfaculty);
-             console.log(this.selectedstandard);
-             console.log(this.selectedsubject);
-             console.log(this.sche[this.i].fk_subject_id,this.selectedsubject,this.sche[this.i].fk_batch_id,this.selected_batch.batch_id,this.sche[this.i].fk_standard_id,this.selectedstandard);
-              if(this.sche[this.i].fk_subject_id==this.selectedsubject && this.sche[this.i].fk_batch_id==this.selected_batch.batch_id && this.sche[this.i].fk_standard_id==this.selectedstandard)
-             {
-               console.log(this.flag1)
+            this.flag1=1;
+          }
+          if(this.sche[this.i].fk_batch_id==this.selected_batch.batch_id)
+          {
+            this.flag2=1;
+          }
+          if(this.flag1==1 || this.flag2==1)
+          {
+            if(this.date1.toDateString()==this.date2.toDateString() && this.sche[this.i].timings==this.timings)
+            {
+              this.flag=true;
 
-               alert("already added");
-               this.flag1=2
-               console.log(this.flag1)
-               break;
-             }
-             else
-             {
-             // this.flag=true;
-              this.flag1=1
+          console.log(this.flag1);
+          console.log(this.flag2);
               break;
-             }
+            }
+          }
 
-           }
+          console.log(this.flag1);
+          console.log(this.flag2);
+        }
+        if(this.flag==false)
+        {
+          this._ser1.addSchedule(new schedule(0,this.selectedsubject,this.selected_batch.batch_id,this.selectedstandard,this.selectedfaculty.faculty_id,this.timings,this.date2)).subscribe(
+            (datas:any)=>
+            {
+              console.log(datas);
+            }
+          );
 
-
+        }
+        else
+        {
+         if(this.flag1==1 && this.flag2==1)
+        {
+          alert("already added");
+        }
+        else if(this.flag1==1)
+        {
+          alert("faculty is busy");
+        }
+        else if(this.flag2==1)
+        {
+          alert("batch is busy");
         }
 
         }
+
       }
-      if(this.flag1==1)
-      {
-        console.log("faculty is busy");
-      }
-      else if(this.flag1==2)
-      {
-        console.log("added");
-      }
-
-
-
-      else if(this.flag1==0){
-
-        console.log("available");
-       this._ser1.addSchedule(new schedule(0,this.fk_subject_id,this.fk_batch_id,this.fk_standard_id,this.fk_faculty_id,this.timings,this.schedule_date)).subscribe(
-         (data:any)=>
-         {
-           console.log(data);
-         }
-       );
-      }
-    }
-  );
-
-
-
-     }
+    );
+  }
   onCheckChange(item)
   {
 

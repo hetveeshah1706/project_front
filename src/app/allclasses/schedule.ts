@@ -6,7 +6,7 @@ export class schedule{
     public fk_standard_id:number,
     public fk_faculty_id:number,
     public timings:string,
-    public schedule_date:Date
+    public schedule_date?:Date
 
   ){
 

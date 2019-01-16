@@ -1,0 +1,141 @@
+<h1>ADD STUDENT
+</h1>
+
+<form (ngSubmit)="onAdd(f)" #f="ngForm" class="example-form">
+
+
+
+<div class="form-group">
+  <mat-form-field class="example-full-width">
+
+    <input matInput type="text" id="student_name" required placeholder="student name" [(ngModel)]="student_name" name="student_name" #sname="ngModel">
+    <mat-error *ngIf="sname.hasError('required')">its required</mat-error>
+
+  </mat-form-field>
+
+
+</div>
+
+
+<div class="form-group">
+  <mat-form-field class="example-full-width">
+
+    <input matInput type="text" id="student_password" required placeholder="password" [(ngModel)]="student_password" name="student_password" #password="ngModel">
+    <mat-error *ngIf="password.hasError('required')">its required</mat-error>
+
+  </mat-form-field>
+
+
+</div>
+
+<mat-form-field>
+  <input matInput name="joining_Date" [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="joining_date" #joiningDate="ngModel">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<br>
+<mat-form-field>
+  <input matInput name="date_of_birth" [matDatepicker]="picker1" placeholder="Choose a date" [(ngModel)]="date_of_birth" #dob="ngModel">
+  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+  <mat-datepicker #picker1></mat-datepicker>
+</mat-form-field>
+<br>
+
+<mat-form-field>
+  <mat-select placeholder="standard" [(ngModel)]="selectedstandard" name="selectedstandard" #dropdown="ngModel" (selectionChange)="onStandardChange()">
+    <mat-option *ngFor="let item of arr_standard" [value]="item.standard_id">
+      {{item.standard_no}}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="dropdown.hasError('required')">its required</mat-error>
+</mat-form-field>
+<br>
+
+<mat-radio-group class="example-radio-group" [(ngModel)]="selected_batch" name="selected_batch" #sel1="ngModel">
+  <mat-radio-button class="example-radio-button" *ngFor="let item of arr_batch" [value]="item">{{item.batch_name}}</mat-radio-button>
+  </mat-radio-group>
+  <br>
+  <mat-form-field>
+    <mat-select placeholder="maths" [(ngModel)]="maths" name="maths" #m1="ngModel" >
+      <mat-option value="yes">
+      yes
+      </mat-option>
+      <mat-option value="no">
+        no
+        </mat-option>
+    </mat-select>
+    <mat-error *ngIf="m1.hasError('required')">its required</mat-error>
+  </mat-form-field>
+  <br>
+
+
+  <mat-form-field>
+    <mat-select placeholder="science" [(ngModel)]="science" name="science" #sc1="ngModel" >
+      <mat-option value="yes">
+      yes
+      </mat-option>
+      <mat-option value="no">
+        no
+        </mat-option>
+    </mat-select>
+    <mat-error *ngIf="dropdown.hasError('required')">its required</mat-error>
+  </mat-form-field>
+  <br>
+
+
+
+  <mat-form-field>
+    <mat-select placeholder="english" [(ngModel)]="english" name="english" #eng="ngModel">
+      <mat-option value="yes">
+      yes
+      </mat-option>
+      <mat-option value="no">
+        no
+        </mat-option>
+    </mat-select>
+    <mat-error *ngIf="eng.hasError('required')">its required</mat-error>
+  </mat-form-field>
+  <br>
+
+
+
+  <mat-form-field>
+    <mat-select placeholder="physics" [(ngModel)]="physics" name="physics" #ph="ngModel" >
+      <mat-option value="yes">
+      yes
+      </mat-option>
+      <mat-option value="no">
+        no
+        </mat-option>
+    </mat-select>
+    <mat-error *ngIf="ph.hasError('required')">its required</mat-error>
+  </mat-form-field>
+  <br>
+
+
+  <mat-form-field>
+    <mat-select placeholder="biology" [(ngModel)]="biology" name="bilology" #bg="ngModel">
+      <mat-option value="yes">
+      yes
+      </mat-option>
+      <mat-option value="no">
+        no
+        </mat-option>
+    </mat-select>
+    <mat-error *ngIf="bg.hasError('required')">its required</mat-error>
+  </mat-form-field>
+  <br>
+
+
+  <div class="row">
+    <div class="col-sm-6">
+      <button class="btn btn-group  btn-primary form-control" [disabled]="!f.valid" type="submit">SAVE</button>
+    </div>
+    <div class="col-sm-6">
+      <button class="btn btn-default btn-danger form-control" (click)="onBack()">CANCEL</button>
+    </div>
+
+
+  </div>
+
+
