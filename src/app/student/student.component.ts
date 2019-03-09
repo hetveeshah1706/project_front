@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { student } from '../allclasses/student';
 import { StudentService } from '../allservices/student.service';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,6 +15,7 @@ export class StudentComponent implements OnInit {
     delarr:student[]=[];
     i:number;
     dataSource = new MatTableDataSource();
+    @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private _studentservice:StudentService,private _route:Router) { }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -66,6 +67,7 @@ onUpdate(item){
 
 
   ngOnInit() {
+    this.dataSource.paginator=this.paginator;
     this._studentservice.getStudent().subscribe(
       (data:any)=>{
         this.student_arr=data;

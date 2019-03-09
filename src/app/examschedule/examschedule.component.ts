@@ -46,6 +46,7 @@ export class ExamscheduleComponent implements OnInit {
 
   }
   ngOnInit() {
+    this.dataSource.paginator=this.paginator;
     this._examscheduleser.getBatchStdSubjectExam().subscribe(
       (data:any)=>{
         console.log(data);

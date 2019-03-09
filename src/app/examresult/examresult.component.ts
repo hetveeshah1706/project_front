@@ -47,6 +47,7 @@ export class ExamresultComponent implements OnInit {
 
   }
   ngOnInit() {
+    this.dataSource.paginator=this.paginator;
     this.examresult_ser.getExamStudent().subscribe(
       (data:any)=>{
 

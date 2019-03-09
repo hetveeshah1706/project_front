@@ -7,7 +7,7 @@ import { batch_std_sub_fac_schedule } from '../allclasses/batch_std_sub_fac_sche
   providedIn: 'root'
 })
 export class ScheduleService {
-  schedule:string="http://localhost:3000/schedule"
+  schedule:string="http://localhost:3000/schedule/"
   schedule1:string="http://localhost:3000/schedule1/"
 
   constructor(private _http:HttpClient) { }

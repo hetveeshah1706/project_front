@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FeesService } from '../allservices/fees.service';
 import { fees } from '../allclasses/fees';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./fees.component.css']
 })
 export class FeesComponent implements OnInit {
-
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private _ser1:FeesService,private _route:Router) { }
   arrfees:fees[]=[];
   displayedColumns: string[] = ['select','student_name','batch_name', 'total_fees','action'];
@@ -29,6 +29,7 @@ export class FeesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dataSource.paginator=this.paginator;
     this._ser1.getAllStudentFees().subscribe(
       (data:fees[])=>{
         this.arrfees=data;

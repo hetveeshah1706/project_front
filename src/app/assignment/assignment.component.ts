@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { batchstandardsubjectassign } from '../allclasses/batchstandardsubjectassign';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { AssignmentService } from '../allservices/assignment.service';
 import { Router } from '@angular/router';
 
@@ -16,6 +16,7 @@ export class AssignmentComponent implements OnInit {
   i:number;
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['select', 'title', 'image', 'standard_no', 'subject_name', 'batch_name',  'submisson_date','action'];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -69,6 +70,7 @@ export class AssignmentComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dataSource.paginator=this.paginator;
     this._ser.getAllAssignment().subscribe(
       (data:any)=>{
         this.merge_arr=data;

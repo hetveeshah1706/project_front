@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ScheduleService } from '../allservices/schedule.service';
 import { Router } from '@angular/router';
 import { batch_std_sub_fac_schedule } from '../allclasses/batch_std_sub_fac_schedule';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.css']
 })
+
 export class ScheduleComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private _ser:ScheduleService,private _route:Router) { }
   today: number = Date.now();
   merge_arr:batch_std_sub_fac_schedule[]=[]
@@ -68,6 +70,7 @@ export class ScheduleComponent implements OnInit {
 
 
   ngOnInit() {
+    this.dataSource.paginator=this.paginator;
     this._ser.getAllScheduleBatchFacultystdsubject().subscribe(
       (data:any)=>{
         console.log(data);
