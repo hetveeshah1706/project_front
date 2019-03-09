@@ -11,6 +11,7 @@ import { DailyworkService } from 'src/app/allservices/dailywork.service';
 import { schedule } from 'src/app/allclasses/schedule';
 import { Scheduler } from 'rxjs';
 import { and } from '@angular/router/src/utils/collection';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-addschedule',
@@ -35,7 +36,7 @@ schedule_id:number;
 fk_subject_id:number;
 fk_standard_id:number;
 fk_batch_id:number;
-fk_faculty_id:number;
+fk_faculty_id:string;
 date1:Date;
 date2:Date;
 sc_date:string;
@@ -46,7 +47,7 @@ flag:boolean=false;
 flag1:number=0;
 flag2:number=0;
 faculty_name:string
-  constructor(private _ser1:ScheduleService,private _ser2:FacultyService,private _ser3:BatchServiceService,private _ser4:DailyworkService) { }
+  constructor(private _ser1:ScheduleService,private _ser2:FacultyService,private _ser3:BatchServiceService,private _ser4:DailyworkService,public _route:Router) { }
   onStandardChange(){
     console.log("hi");
     this._ser4.getbatchbystandardID(this.selectedstandard).subscribe(
@@ -122,6 +123,9 @@ faculty_name:string
 
       }
     );
+  }
+  onBack(){
+    this._route.navigate(['../menu/schedule']);
   }
   onCheckChange(item)
   {

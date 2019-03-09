@@ -20,7 +20,7 @@ export class StudentComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   onAdd(){
-    this._route.navigate(['/addstudent'])
+    this._route.navigate(['../menu/addstudent'])
   }
   onCheckChange(item:student){
     if(this.delarr.find(x=>x==item)){
@@ -60,7 +60,7 @@ export class StudentComponent implements OnInit {
 
 }
 onUpdate(item){
-  this._route.navigate(['/updatestudent',item.student_id])
+  this._route.navigate(['../menu/updatestudent',item.student_id])
 
 }
 

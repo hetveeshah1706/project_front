@@ -5,6 +5,7 @@ import { StudentService } from 'src/app/allservices/student.service';
 import { BatchServiceService } from 'src/app/allservices/batch-service.service';
 import { DailyworkService } from 'src/app/allservices/dailywork.service';
 import { student } from 'src/app/allclasses/student';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-addstudent',
@@ -28,7 +29,7 @@ export class AddstudentComponent implements OnInit {
   biology:string;
   date1:Date;
   date2:Date;
-  constructor(private _studentservice:StudentService,private _daily:DailyworkService,private _batch:BatchServiceService) { }
+  constructor(private _studentservice:StudentService,private _daily:DailyworkService,private _batch:BatchServiceService,private _route:Router) { }
   onStandardChange(){
     console.log("hi");
     this._daily.getbatchbystandardID(this.selectedstandard).subscribe(
@@ -47,6 +48,9 @@ export class AddstudentComponent implements OnInit {
         console.log(data);
       }
     )
+  }
+  onBack(){
+    this._route.navigate(['../menu/student']);
   }
 
   ngOnInit() {

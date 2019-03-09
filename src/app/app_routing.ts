@@ -22,10 +22,23 @@ import { FeespaidComponent } from './fees/feespaid/feespaid.component';
 import { StudentComponent } from './student/student.component';
 import { AddstudentComponent } from './student/addstudent/addstudent.component';
 import { UpdatestudentComponent } from './student/updatestudent/updatestudent.component';
+import { RemainingFeesComponent } from './fees/remaining-fees/remaining-fees.component';
+import { AddfeesComponent } from './fees/addfees/addfees.component';
+import { FeesdetailComponent } from './fees/feesdetail/feesdetail.component';
+import { ExamscheduleComponent } from './examschedule/examschedule.component';
+import { AddexamscheduleComponent } from './examschedule/addexamschedule/addexamschedule.component';
+import { UpdateexamscheduleComponent } from './examschedule/updateexamschedule/updateexamschedule.component';
+import { ExamresultComponent } from './examresult/examresult.component';
+import { AddexamresultComponent } from './examresult/addexamresult/addexamresult.component';
+import { LoginComponent } from './login/login.component';
+import { MenuComponent } from './menu/menu.component';
+import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 
 
 const arr: Routes = [
-{path: '', component: BatchComponent},
+  {path:'',component:LoginComponent},
+  {path:'menu',component:MenuComponent,children:[
+    {path: '', component: HomeComponent},
 {path: 'batch', component: BatchComponent},
 {path: 'updatebatch/:batch_id', component: UpdatebatchComponent},
 {path:'addbatch',component:AddbatchComponent},
@@ -48,5 +61,16 @@ const arr: Routes = [
 {path:'student',component:StudentComponent},
 {path:'addstudent',component:AddstudentComponent},
 {path:'updatestudent/:student_id',component:UpdatestudentComponent},
+{path:'fees_remaining',component:RemainingFeesComponent},
+{path:'addfees',component:AddfeesComponent},
+{path:'feesdetail/:fk_student_fees_id',component:FeesdetailComponent},
+{path:'examschedule',component:ExamscheduleComponent},
+{path:'addexamschedule',component:AddexamscheduleComponent},
+{path:'updateexamschedule/:exam_id',component:UpdateexamscheduleComponent},
+{path:'examresult',component:ExamresultComponent},
+{path:'addexamresult',component:AddexamresultComponent},
+{path:'forget',component:ForgetpassComponent}
+
+  ]}
 ];
 export const routing = RouterModule.forRoot(arr);

@@ -21,11 +21,11 @@ export class AssignmentComponent implements OnInit {
   }
   constructor(private _ser:AssignmentService,private _route:Router) { }
   onAdd(){
-    this._route.navigate(['/assignmentadd']);
+    this._route.navigate(['../menu/assignmentadd']);
   }
   onUpdate(item){
     console.log(item.assignment_id);
-    this._route.navigate(['/updateassignment',item.assignment_id])
+    this._route.navigate(['../menu/updateassignment',item.assignment_id])
 
   }
   onCheckChange(item:batchstandardsubjectassign){

@@ -59,7 +59,7 @@ export class BatchComponent implements OnInit {
 
   onUpdate(item){
     // localStorage.setItem('cusine_id',item.cusine_id);
-     this._route.navigate (['/updatebatch',item.batch_id]);
+     this._route.navigate (['../menu/updatebatch',item.batch_id]);
    }
    onCheckChange(item:batchstandard_class){
     if(this.delarr.find(x=>x==item)){
@@ -85,10 +85,10 @@ export class BatchComponent implements OnInit {
       );
     }
     onAdd(){
-      this._route.navigate(['/addbatch']);
+      this._route.navigate(['../menu/addbatch']);
     }
     onBack(){
-      this._route.navigate(['/batch'])
+      this._route.navigate(['../menu/batch'])
     }
 
   ngOnInit() {

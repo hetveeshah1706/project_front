@@ -8,10 +8,14 @@ import { student } from '../allclasses/student';
 export class StudentService {
   student:string="http://localhost:3000/student/";
   deletestudent:string="http://localhost:3000/deletestudent/"
-
+  studentsubject:string="http://localhost:3000/studentsubject/"
   constructor(private _http:HttpClient) { }
   getStudent(){
     return this._http.get(this.student)
+  }
+  getSubjectByStandard(standard_id:number)
+  {
+    return this._http.get(this.studentsubject+standard_id);
   }
   getStudentById(student_id:number){
     return this._http.get(this.student+student_id)

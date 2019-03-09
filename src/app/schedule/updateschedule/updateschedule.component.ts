@@ -26,7 +26,7 @@ export class UpdatescheduleComponent implements OnInit {
   arrfaculty:faculty[]=[];
   fk_standard_id:number;
   fk_batch_id:number;
-  fk_faculty_id:number;
+  fk_faculty_id:string;
   fk_subject_id:number;
   onUpdate(){
     //console.log(this.batch_id,this.fk_standard_id);

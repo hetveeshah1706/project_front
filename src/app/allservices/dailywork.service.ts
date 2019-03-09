@@ -35,7 +35,8 @@ export class DailyworkService {
   getBatchStandardSubjectonDailyWork(){
     return this._http.get(this.alldaily);
   }
-  updateDaily(item:dailywork_class){
+  updateDaily(item:dailywork_class)
+  {
     let body=JSON.stringify(item);
     let head1=new HttpHeaders().set('Content-Type','application/json');
     return this._http.put(this.updatedailywork+item.work_id,body,{headers:head1});

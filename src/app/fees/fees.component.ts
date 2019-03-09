@@ -18,9 +18,14 @@ export class FeesComponent implements OnInit {
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
+  onAdd(){
+    this._route.navigate(['../menu/addfees']);
+  }
   onFeesPaid(){
-    this._route.navigate(['/feespaid']);
+    this._route.navigate(['../menu/feespaid']);
+  }
+  onFeesRemaining(){
+    this._route.navigate(['../menu/fees_remaining']);
   }
 
   ngOnInit() {

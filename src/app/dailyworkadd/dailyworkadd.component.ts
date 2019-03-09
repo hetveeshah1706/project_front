@@ -18,7 +18,7 @@ export class DailyworkaddComponent implements OnInit {
   batch_id:number;
   batch_name:string;
   title:string;
-  image:string;
+  pdf:string;
   selectedFile:File=null;
   selected:batchstandardsubject_class;
   selected1:batchstandardsubject_class;
@@ -74,7 +74,7 @@ export class DailyworkaddComponent implements OnInit {
     fd.set('fk_batch_id',this.arr_b[this.i].batch_id.toString());
     fd.set('fk_standard_id',this.selected1.toString());
 
-    fd.set('image',this.selectedFile,this.selectedFile.name);
+    fd.set('pdf',this.selectedFile,this.selectedFile.name);
 
     fd.set( 'fk_subject_id',this.selected2.subject_id.toString());
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import {MatTableDataSource,MatPaginator,MatSort} from '@angular/material';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { batchstandardsubjectdaily_class } from "../allclasses/batchstandardsubjectdaily_class"
@@ -24,21 +24,23 @@ export class DailyworkComponent implements OnInit {
   selection = new SelectionModel(true, []);
 
   constructor(private _ser:DailyworkService,private _route:Router) { }
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort:MatSort;
   merge_arr:batchstandardsubjectdaily_class[]=[];
   del_arr:batchstandardsubjectdaily_class[]=[];
 
   i:number;
   dataSource = new MatTableDataSource();
   expandedElement;
-  displayedColumns: string[] = ['select','title','image', 'standard_no','subject_name','batch_name','daily_date','action'];
+  displayedColumns: string[] = ['select','title','pdf', 'standard_no','subject_name','batch_name','daily_date','action'];
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   onAdd(){
-    this._route.navigate(['/dailywork']);
+    this._route.navigate(['../menu/dailywork']);
   }
   onUpdate(item){
-    this._route.navigate(['/updatedaily',item.work_id])
+    this._route.navigate(['../menu/updatedaily',item.work_id])
 
   }
   onDel(item)
@@ -83,6 +85,8 @@ export class DailyworkComponent implements OnInit {
 
 
   ngOnInit() {
+    this.dataSource.paginator=this.paginator;
+    this.dataSource.sort=this.sort;
     this._ser.getBatchStandardSubjectonDailyWork().subscribe(
       (data:any)=>{
         this.merge_arr=data;

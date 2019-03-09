@@ -69,7 +69,7 @@ export class AddbatchComponent implements OnInit {
      }
     }
     onBack(){
-      this._route.navigate(['/batch']);
+      this._route.navigate(['../menu/batch']);
     }
 
   ngOnInit() {

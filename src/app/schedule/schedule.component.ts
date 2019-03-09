@@ -22,10 +22,10 @@ export class ScheduleComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   onAdd(){
-    this._route.navigate(['/addschedule']);
+    this._route.navigate(['../menu/addschedule']);
   }
   onUpdate(item){
-    this._route.navigate(['/updateschedule',item.schedule_id])
+    this._route.navigate(['../menu/updateschedule',item.schedule_id])
 
   }
   onCheckChange(item:batch_std_sub_fac_schedule){

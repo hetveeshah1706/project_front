@@ -121,7 +121,7 @@ onBatchChange(batch_id){
 
 }
 onAdd(){
-  this._route.navigate(['/addattendance']);
+  this._route.navigate(['../menu/addattendance']);
 }
   ngOnInit() {
     this._ser2.getAllBatch().subscribe(

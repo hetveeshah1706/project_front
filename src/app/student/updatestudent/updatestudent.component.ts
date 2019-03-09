@@ -46,6 +46,9 @@ export class UpdatestudentComponent implements OnInit {
       }
     )
   }
+  onBack(){
+    this._route.navigate(['../menu/student']);
+  }
   ngOnInit() {
     this.student_id=this._actroute.snapshot.params['student_id'];
     this._student.getStudentById(this.student_id).subscribe(

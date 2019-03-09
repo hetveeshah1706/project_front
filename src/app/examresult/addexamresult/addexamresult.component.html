@@ -1,0 +1,46 @@
+<h1>ADD EXAM SCHEDULE
+</h1>
+<form (ngSubmit)="onAdd(f)" #f="ngForm" class="example-form">
+<div class="container">
+  <mat-form-field>
+    <mat-select placeholder="student" [(ngModel)]="selectedstudent" name="selectedstudent" #dropdown="ngModel" (selectionChange)="onStudentChange()">
+      <mat-option *ngFor="let item of arr_student" [value]="item">
+        {{item.student_name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="dropdown.hasError('required')">its required</mat-error>
+  </mat-form-field>
+
+<br>
+<br>
+
+  <mat-form-field>
+    <mat-select placeholder="subject" [(ngModel)]="selectedsubject" name="selectedsubject" #dropdown="ngModel" [disabled]="selectedstudent==null" >
+      <mat-option *ngFor="let item of arr_subject" [value]="item">
+        {{item.subject_name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="dropdown.hasError('required')">its required</mat-error>
+  </mat-form-field>
+
+<br>
+<br>
+<mat-form-field class="example-full-width">
+    <input matInput type="number" id="marks_obtained" required placeholder="ENTER THE MARKS" [(ngModel)]="marks_obtained" name="marks_obtained" #marksobtained="ngModel">
+    <mat-error *ngIf="marksobtained.hasError('required')">its required</mat-error>
+  </mat-form-field>
+<br>
+
+
+<div class="row">
+    <div class="col-sm-6">
+      <button class="btn btn-group  btn-primary form-control" [disabled]="!f.valid" type="submit">SAVE</button>
+    </div>
+    <div class="col-sm-6">
+      <button class="btn btn-default btn-danger form-control" (click)="onBack()">CANCEL</button>
+    </div>
+
+
+  </div>
+
+

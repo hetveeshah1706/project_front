@@ -38,6 +38,17 @@ import { StudentComponent } from './student/student.component';
 import { AddstudentComponent } from './student/addstudent/addstudent.component';
 import { UpdatestudentComponent } from './student/updatestudent/updatestudent.component';
 
+import { RemainingFeesComponent } from './fees/remaining-fees/remaining-fees.component';
+import { AddfeesComponent } from './fees/addfees/addfees.component';
+import { FeesdetailComponent } from './fees/feesdetail/feesdetail.component';
+import { UpdateexamscheduleComponent } from './examschedule/updateexamschedule/updateexamschedule.component';
+import { ExamscheduleComponent } from './examschedule/examschedule.component';
+import { AddexamscheduleComponent } from './examschedule/addexamschedule/addexamschedule.component';
+import { ExamresultComponent } from './examresult/examresult.component';
+import { AddexamresultComponent } from './examresult/addexamresult/addexamresult.component';
+import { LoginComponent } from './login/login.component';
+import { ForgetpassComponent } from './forgetpass/forgetpass.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +77,20 @@ import { UpdatestudentComponent } from './student/updatestudent/updatestudent.co
     StudentComponent,
     AddstudentComponent,
     UpdatestudentComponent,
+    ExamscheduleComponent,
+    AddexamscheduleComponent,
+    UpdateexamscheduleComponent,
+    ExamresultComponent,
+    AddexamresultComponent,
+    RemainingFeesComponent,
+
+    AddfeesComponent,
+
+    FeesdetailComponent,
+
+    LoginComponent,
+
+    ForgetpassComponent,
 
   ],
   imports: [

@@ -35,11 +35,11 @@ export class NoticeComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   onAdd(){
-    this._route.navigate(['/addnotice']);
+    this._route.navigate(['../menu/addnotice']);
 
   }
   onUpdate(item){
-    this._route.navigate(['/updatenotice',item.notice_id])
+    this._route.navigate(['../menu/updatenotice',item.notice_id])
 
   }
   onDel(item)
